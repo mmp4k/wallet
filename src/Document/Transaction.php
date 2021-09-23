@@ -27,10 +27,10 @@ class Transaction implements JsonSerializable
      */
     private DateTimeImmutable $dateTime;
 
-    public function __construct(TransactionMoney $value, DateTimeImmutable $dateTime)
+    public function __construct(/*TransactionMoney $value, DateTimeImmutable $dateTime*/)
     {
-        $this->value = $value;
-        $this->dateTime = $dateTime;
+//        $this->value = $value;
+//        $this->dateTime = $dateTime;
     }
 
     public function jsonSerialize()
@@ -39,5 +39,15 @@ class Transaction implements JsonSerializable
             'date' => $this->dateTime->format('c'),
             'value' => $this->value
         ];
+    }
+
+    public function isBuyingTransaction(): bool
+    {
+        return true;
+    }
+
+    public function isSellingTransaction(): bool
+    {
+        return false;
     }
 }
